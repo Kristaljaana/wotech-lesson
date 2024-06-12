@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        ArrayList<String> books = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        System.out.println("Welcome to the Book Management Application!");
+
+        while (running) {
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Add a book");
+            System.out.println("2. Remove a book");
+            System.out.println("3. View all books");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 1) {
+                System.out.print("Enter the name of the book to add: ");
+                String bookToAdd = scanner.nextLine();
+                books.add(bookToAdd);
+                System.out.println("'" + bookToAdd + "' has been added.");
+            } else if (choice == 2) {
+                System.out.print("Enter the name of the book to remove: ");
+                String bookToRemove = scanner.nextLine();
+                if (books.remove(bookToRemove)) {
+                    System.out.println("'" + bookToRemove + "' has been removed.");
+                } else {
+                    System.out.println("'" + bookToRemove + "' not found.");
+                }
+            } else if (choice == 3) {
+                System.out.println("Books in the collection:");
+                for (String book : books) {
+                    System.out.println("- " + book);
+                }
+            } else if (choice == 4) {
+                running = false;
+                System.out.println("Exiting the application.");
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+}
